@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO 메타 태그 -->
+    <title>무료 대출 관리 시트 | 대출 상환 계산기 | 원금균등 원리금균등 계산</title>
+    <meta name="description" content="무료 대출 관리 도구로 여러 대출을 한눈에 관리하세요. 원금균등, 원리금균등 상환 방식 지원, 월 상환금 자동 계산, 상환 스케줄 확인 가능. 신용대출, 마이너스통장, 담보대출 통합 관리.">
+    <meta name="keywords" content="대출관리, 대출계산기, 상환계산기, 원금균등, 원리금균등, 대출상환, 월상환금계산, 무료대출관리, 대출통합관리, 신용대출계산기">
+    <meta name="author" content="지영킹">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph 태그 (소셜 미디어 공유) -->
+    <meta property="og:title" content="무료 대출 관리 시트 - 간편한 대출 상환 계산기">
+    <meta property="og:description" content="여러 대출을 한눈에 관리하고 월 상환금을 자동 계산하는 무료 도구. 원금균등, 원리금균등 방식 지원.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com">
+    <meta property="og:image" content="https://your-domain.com/loan-manager-preview.jpg">
+    <meta property="og:site_name" content="대출 관리 시트">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter 카드 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="무료 대출 관리 시트">
+    <meta name="twitter:description" content="여러 대출을 한눈에 관리하고 월 상환금을 자동 계산하는 무료 도구">
+    <meta name="twitter:image" content="https://your-domain.com/loan-manager-preview.jpg">
+    
+    <!-- 구조화된 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "대출 관리 시트",
+        "description": "무료 대출 관리 및 상환 계산 도구",
+        "url": "https://your-domain.com",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "지영킹",
+            "url": "https://www.linkedin.com/in/jyking0907/"
+        },
+        "featureList": [
+            "대출 통합 관리",
+            "월 상환금 자동 계산",
+            "원금균등 상환 스케줄",
+            "원리금균등 상환 방식 지원",
+            "마이너스통장 관리",
+            "상환 진행률 시각화"
+        ]
+    }
+    </script>
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- 언어 설정 -->
+    <meta http-equiv="content-language" content="ko">
+    <link rel="alternate" hreflang="ko" href="https://your-domain.com">
+    
+    <!-- 캐노니컬 URL -->
+    <link rel="canonical" href="https://your-domain.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #FF4F0F;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #FFE3BB;
+        }
+        
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid;
+        }
+        
+        .dashboard-card.total { border-left-color: #FF4F0F; }
+        .dashboard-card.monthly { border-left-color: #03A6A1; }
+        .dashboard-card.count { border-left-color: #FFA673; }
+        .dashboard-card.average { border-left-color: #FF4F0F; }
+        
+        .dashboard-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .dashboard-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #03A6A1;
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #FF4F0F;
+            box-shadow: 0 0 0 3px rgba(255, 79, 15, 0.1);
+        }
+        
+        .btn {
+            background: #FF4F0F;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #e6450d;
+            transform: translateY(-1px);
+        }
+        
+        .loan-list {
+            margin-top: 30px;
+        }
+        
+        .loan-item {
+            background: #fff;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .loan-item:hover {
+            border-color: #FFA673;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .loan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .loan-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+        
+        .loan-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .loan-type {
+            background: #FF4F0F;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .minus-account .loan-type {
+            background: #FFA673;
+        }
+        
+        .edit-btn {
+            background: #03A6A1;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: #028a86;
+        }
+        
+        .loan-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .loan-detail {
+            text-align: center;
+        }
+        
+        .loan-detail .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .loan-detail .value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .progress-bar {
+            background: #e1e5e9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #03A6A1;
+            transition: width 0.3s ease;
+        }
+
+        .minus-account {
+            border-left: 4px solid #FFA673;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .close {
+            color: #999;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .close:hover {
+            color: #FF4F0F;
+        }
+
+        .payment-schedule {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+        }
+
+        .schedule-header, .schedule-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .schedule-header {
+            background: #FFE3BB;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .schedule-row:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e1e5e9;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #FF4F0F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .loan-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .loan-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .loan-controls {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 대출 상환 관리</h1>
+            <p>한 눈에 보는 나의 대출 현황 - 무료 대출 관리 도구</p>
+        </div>
+        
+        <div class="dashboard">
+            <div class="dashboard-card total">
+                <h3>총 대출 잔액</h3>
+                <div class="value" id="totalBalance">0원</div>
+            </div>
+            <div class="dashboard-card monthly">
+                <h3>월 총 상환금</h3>
+                <div class="value" id="monthlyPayment">0원</div>
+            </div>
+            <div class="dashboard-card count">
+                <h3>대출 개수</h3>
+                <div class="value" id="loanCount">0개</div>
+            </div>
+            <div class="dashboard-card average">
+                <h3>평균 금리</h3>
+                <div class="value" id="averageRate">0%</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-header">
+                    ➕ 새 대출 추가
+                </div>
+                <div class="section-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="loanName">대출명</label>
+                            <input type="text" id="loanName" placeholder="예: KB국민은행 신용대출">
+                        </div>
+                        <div class="form-group">
+                            <label for="loanType">대출 종류</label>
+                            <select id="loanType">
+                                <option value="신용대출">신용대출</option>
+                                <option value="마이너스통장">마이너스통장</option>
+                                <option value="담보대출">담보대출</option>
+                                <option value="전세자금대출">전세자금대출</option>
+                                <option value="기타">기타</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="originalAmount">원금 (원)</label>
+                            <input type="number" id="originalAmount" placeholder="10000000">
+                        </div>
+                        <div class="form-group">
+                            <label for="currentBalance">현재 잔액 (원)</label>
+                            <input type="number" id="currentBalance" placeholder="8000000">
+                        </div>
+                        <div class="form-group">
+                            <label for="interestRate">연이율 (%)</label>
+                            <input type="number" id="interestRate" step="0.1" placeholder="4.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentType">상환 방식</label>
+                            <select id="paymentType">
+                                <option value="원리금균등">원리금균등</option>
+                                <option value="원금균등">원금균등</option>
+                                <option value="만기일시상환">만기일시상환</option>
+                                <option value="자유상환">자유상환 (마이너스통장)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyPayment">월 상환금 (원)</label>
+                            <input type="number" id="monthlyPaymentInput" placeholder="200000">
+                        </div>
+                        <div class="form-group">
+                            <label for="maturityDate">만기일</label>
+                            <input type="date" id="maturityDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentDay">매월 상환일</label>
+                            <input type="number" id="paymentDay" min="1" max="31" placeholder="15">
+                        </div>
+                    </div>
+                    <button class="btn" onclick="addLoan()">대출 추가</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    📋 대출 목록
+                </div>
+                <div class="section-content">
+                    <div class="loan-list" id="loanList">
+                        <p style="text-align: center; color: #666; padding: 40px;">
+                            아직 등록된 대출이 없습니다.<br>
+                            위에서 대출 정보를 추가해주세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 수정 모달 -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>대출 정보 수정</h2>
+                    <button class="close" onclick="closeEditModal()">&times;</button>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="editLoanName">대출명</label>
+                        <input type="text" id="editLoanName">
+                    </div>
+                    <div class="form-group">
+                        <label for="editLoanType">대출 종류</label>
+                        <select id="editLoanType">
+                            <option value="신용대출">신용대출</option>
+                            <option value="마이너스통장">마이너스통장</option>
+                            <option value="담보대출">담보대출</option>
+                            <option value="전세자금대출">전세자금대출</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editOriginalAmount">원금 (원)</label>
+                        <input type="number" id="editOriginalAmount">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCurrentBalance">현재 잔액 (원)</label>
+                        <input type="number" id="editCurrentBalance">
+                    </div>
+                    <div class="form-group">
+                        <label for="editInterestRate">연이율 (%)</label>
+                        <input type="number" id="editInterestRate" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPaymentType">상환 방식</label>
+                        <select id="editPaymentType">
+                            <option value="원리금균등">원리금균등</option>
+                            <option value="원금균등">원금균등</option>
+                            <option value="만기일시상환">만기일시상환</option>
+                            <option value="자유상환">자유상환 (마이너스통장)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMonthlyPayment">월 상환금 (원)</label>
+                        <input type="number" id="editMonthlyPayment">
+                    </div>
+                    <div class="form-group">
+                        <label for="editMaturityDate">만기일</label>
+                        <input type="date" id="editMaturityDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPaymentDay">매월 상환일</label>
+                        <input type="number" id="editPaymentDay" min="1" max="31">
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="updateLoan()">수정 완료</button>
+                    <button class="btn" onclick="closeEditModal()" style="background: #666; margin-left: 10px;">취소</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 상환 스케줄 모달 -->
+        <div id="scheduleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>상환 스케줄</h2>
+                    <button class="close" onclick="closeScheduleModal()">&times;</button>
+                </div>
+                <div id="scheduleContent"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Made by <a href="https://www.linkedin.com/in/jyking0907/" target="_blank">지영킹</a> with Claude
+        </div>
+    </div>
+
+    <script>
+        // 전역 변수
+        let loans = [];
+        let currentEditIndex = -1;
+
+        // 로컬스토리지 관리
+        function loadLoans() {
+            try {
+                const savedLoans = localStorage.getItem('loanData');
+                loans = savedLoans ? JSON.parse(savedLoans) : [];
+            } catch (error) {
+                loans = [];
+            }
+        }
+
+        function saveLoans() {
+            try {
+                localStorage.setItem('loanData', JSON.stringify(loans));
+                return true;
+            } catch (error) {
+                alert('데이터 저장에 실패했습니다.');
+                return false;
+            }
+        }
+
+        // 숫자 포맷팅
+        function formatNumber(num) {
+            if (num === null || num === undefined || isNaN(num)) return '0';
+            return new Intl.NumberFormat('ko-KR').format(num);
+        }
+
+        // 원금균등상환 월 상환금 계산
+        function calculateEqualPrincipalPayment(loan) {
+            if (!loan.maturityDate || loan.currentBalance <= 0) return 0;
+            
+            const today = new Date();
+            const maturity = new Date(loan.maturityDate);
+            const diffTime = maturity - today;
+            const remainingMonths = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44)));
+            
+            const monthlyPrincipal = loan.currentBalance / remainingMonths;
+            const monthlyInterest = loan.currentBalance * (loan.interestRate / 100 / 12);
+            
+            return Math.round(monthlyPrincipal + monthlyInterest);
+        }
+
+        // 월 상환금 표시
+        function getMonthlyPaymentDisplay(loan) {
+            if (loan.paymentType === '원금균등') {
+                const payment = calculateEqualPrincipalPayment(loan);
+                return formatNumber(payment) + ' (변동)';
+            }
+            return formatNumber(loan.monthlyPayment || 0);
+        }
+
+        // 대시보드 업데이트
+        function updateDashboard() {
+            const totalBalance = loans.reduce((sum, loan) => sum + (loan.currentBalance || 0), 0);
+            const monthlyPayment = loans.reduce((sum, loan) => {
+                if (loan.paymentType === '원금균등') {
+                    return sum + calculateEqualPrincipalPayment(loan);
+                }
+                return sum + (loan.monthlyPayment || 0);
+            }, 0);
+            const loanCount = loans.length;
+            const averageRate = loanCount > 0 ? 
+                loans.reduce((sum, loan) => sum + (loan.interestRate || 0), 0) / loanCount : 0;
+
+            document.getElementById('totalBalance').textContent = formatNumber(totalBalance) + '원';
+            document.getElementById('monthlyPayment').textContent = formatNumber(monthlyPayment) + '원';
+            document.getElementById('loanCount').textContent = loanCount + '개';
+            document.getElementById('averageRate').textContent = averageRate.toFixed(2) + '%';
+        }
+
+        // 대출 목록 렌더링
+        function renderLoans() {
+            const loanList = document.getElementById('loanList');
+            
+            if (loans.length === 0) {
+                loanList.innerHTML = `
+                    <p style="text-align: center; color: #666; padding: 40px;">
+                        아직 등록된 대출이 없습니다.<br>
+                        위에서 대출 정보를 추가해주세요.
+                    </p>
+                `;
+                return;
+            }
+
+            loanList.innerHTML = loans.map((loan, index) => {
+                const progressPercent = loan.originalAmount > 0 ? 
+                    ((loan.originalAmount - loan.currentBalance) / loan.originalAmount * 100) : 0;
+                
+                const isMinusAccount = loan.loanType === '마이너스통장';
+                const minusClass = isMinusAccount ? 'minus-account' : '';
+                
+                return `
+                    <div class="loan-item ${minusClass}">
+                        <div class="loan-header">
+                            <div class="loan-name">${loan.name || '이름 없음'}</div>
+                            <div class="loan-controls">
+                                <div class="loan-type">${loan.loanType || '기타'}</div>
+                                <button class="edit-btn" onclick="editLoan(${index})">수정</button>
+                            </div>
+                        </div>
+                        <div class="loan-details">
+                            <div class="loan-detail">
+                                <div class="label">원금</div>
+                                <div class="value">${formatNumber(loan.originalAmount)}원</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">현재 잔액</div>
+                                <div class="value">${formatNumber(loan.currentBalance)}원</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">금리</div>
+                                <div class="value">${loan.interestRate || 0}%</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">월 상환금</div>
+                                <div class="value">${getMonthlyPaymentDisplay(loan)}원</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">상환 방식</div>
+                                <div class="value">${loan.paymentType || '기타'}</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">만기일</div>
+                                <div class="value">${loan.maturityDate || '-'}</div>
+                            </div>
+                            <div class="loan-detail">
+                                <div class="label">매월 상환일</div>
+                                <div class="value">${loan.paymentDay ? loan.paymentDay + '일' : '-'}</div>
+                            </div>
+                        </div>
+                        ${!isMinusAccount && loan.paymentType === '원금균등' ? `
+                            <div style="text-align: center; margin-top: 15px;">
+                                <button class="btn" onclick="showPaymentSchedule(${index})" style="padding: 8px 16px; font-size: 0.9rem;">
+                                    상환 스케줄 보기
+                                </button>
+                            </div>
+                        ` : ''}
+                        ${!isMinusAccount && loan.paymentType !== '원금균등' ? `
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                            </div>
+                            <div style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: #666;">
+                                상환 진행률: ${progressPercent.toFixed(1)}%
+                            </div>
+                        ` : ''}
+                        ${isMinusAccount ? `
+                            <div style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #666;">
+                                사용 한도: ${formatNumber(loan.originalAmount)}원 | 
+                                현재 사용: ${formatNumber(loan.currentBalance)}원
+                                ${loan.paymentDay ? ` | 매월 ${loan.paymentDay}일 상환` : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 대출 추가
+        function addLoan() {
+            const name = document.getElementById('loanName').value.trim();
+            const loanType = document.getElementById('loanType').value;
+            const originalAmount = parseInt(document.getElementById('originalAmount').value) || 0;
+            const currentBalance = parseInt(document.getElementById('currentBalance').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interestRate').value) || 0;
+            const paymentType = document.getElementById('paymentType').value;
+            const monthlyPayment = parseInt(document.getElementById('monthlyPaymentInput').value) || 0;
+            const maturityDate = document.getElementById('maturityDate').value;
+            const paymentDay = parseInt(document.getElementById('paymentDay').value) || null;
+
+            if (!name || originalAmount <= 0) {
+                alert('대출명과 원금을 정확히 입력해주세요.');
+                return;
+            }
+
+            const loan = {
+                id: Date.now(),
+                name,
+                loanType,
+                originalAmount,
+                currentBalance,
+                interestRate,
+                paymentType,
+                monthlyPayment,
+                maturityDate,
+                paymentDay,
+                createdAt: new Date().toISOString()
+            };
+
+            loans.push(loan);
+            
+            if (saveLoans()) {
+                // 폼 초기화
+                document.getElementById('loanName').value = '';
+                document.getElementById('originalAmount').value = '';
+                document.getElementById('currentBalance').value = '';
+                document.getElementById('interestRate').value = '';
+                document.getElementById('monthlyPaymentInput').value = '';
+                document.getElementById('maturityDate').value = '';
+                document.getElementById('paymentDay').value = '';
+
+                updateDashboard();
+                renderLoans();
+                alert('대출이 성공적으로 추가되었습니다.');
+            }
+        }
+
+        // 대출 수정
+        function editLoan(index) {
+            if (index < 0 || index >= loans.length) {
+                alert('잘못된 대출 정보입니다.');
+                return;
+            }
+            
+            currentEditIndex = index;
+            const loan = loans[index];
+            
+            // 수정 폼에 기존 데이터 입력
+            document.getElementById('editLoanName').value = loan.name || '';
+            document.getElementById('editLoanType').value = loan.loanType || '';
+            document.getElementById('editOriginalAmount').value = loan.originalAmount || '';
+            document.getElementById('editCurrentBalance').value = loan.currentBalance || '';
+            document.getElementById('editInterestRate').value = loan.interestRate || '';
+            document.getElementById('editPaymentType').value = loan.paymentType || '';
+            document.getElementById('editMonthlyPayment').value = loan.monthlyPayment || '';
+            document.getElementById('editMaturityDate').value = loan.maturityDate || '';
+            document.getElementById('editPaymentDay').value = loan.paymentDay || '';
+            
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function updateLoan() {
+            if (currentEditIndex < 0 || currentEditIndex >= loans.length) {
+                alert('잘못된 대출 정보입니다.');
+                return;
+            }
+            
+            const name = document.getElementById('editLoanName').value.trim();
+            const loanType = document.getElementById('editLoanType').value;
+            const originalAmount = parseInt(document.getElementById('editOriginalAmount').value) || 0;
+            const currentBalance = parseInt(document.getElementById('editCurrentBalance').value) || 0;
+            const interestRate = parseFloat(document.getElementById('editInterestRate').value) || 0;
+            const paymentType = document.getElementById('editPaymentType').value;
+            const monthlyPayment = parseInt(document.getElementById('editMonthlyPayment').value) || 0;
+            const maturityDate = document.getElementById('editMaturityDate').value;
+            const paymentDay = parseInt(document.getElementById('editPaymentDay').value) || null;
+
+            if (!name || originalAmount <= 0) {
+                alert('대출명과 원금을 정확히 입력해주세요.');
+                return;
+            }
+
+            // 기존 대출 정보 업데이트
+            loans[currentEditIndex] = {
+                ...loans[currentEditIndex],
+                name,
+                loanType,
+                originalAmount,
+                currentBalance,
+                interestRate,
+                paymentType,
+                monthlyPayment,
+                maturityDate,
+                paymentDay,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (saveLoans()) {
+                updateDashboard();
+                renderLoans();
+                closeEditModal();
+                alert('대출 정보가 수정되었습니다.');
+            }
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditIndex = -1;
+        }
+
+        // 상환 스케줄 표시
+        function showPaymentSchedule(index) {
+            if (index < 0 || index >= loans.length) {
+                alert('잘못된 대출 정보입니다.');
+                return;
+            }
+            
+            const loan = loans[index];
+            if (loan.paymentType !== '원금균등') {
+                alert('원금균등 상환 방식만 스케줄을 확인할 수 있습니다.');
+                return;
+            }
+            
+            const scheduleContent = document.getElementById('scheduleContent');
+            let html = `
+                <div class="payment-schedule">
+                    <div class="schedule-header">
+                        <div>회차</div>
+                        <div>원금</div>
+                        <div>이자</div>
+                        <div>총 상환액</div>
+                    </div>
+            `;
+            
+            const today = new Date();
+            const maturity = new Date(loan.maturityDate);
+            const diffTime = maturity - today;
+            const totalMonths = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30.44)));
+            
+            const monthlyPrincipal = Math.round(loan.currentBalance / totalMonths);
+            let remainingBalance = loan.currentBalance;
+            
+            for (let i = 1; i <= Math.min(totalMonths, 24); i++) {
+                const monthlyInterest = Math.round(remainingBalance * (loan.interestRate / 100 / 12));
+                const currentPrincipal = i === totalMonths ? remainingBalance : monthlyPrincipal;
+                const totalPayment = currentPrincipal + monthlyInterest;
+                
+                html += `
+                    <div class="schedule-row">
+                        <div>${i}회차</div>
+                        <div>${formatNumber(currentPrincipal)}원</div>
+                        <div>${formatNumber(monthlyInterest)}원</div>
+                        <div>${formatNumber(totalPayment)}원</div>
+                    </div>
+                `;
+                
+                remainingBalance -= currentPrincipal;
+                if (remainingBalance <= 0) break;
+            }
+            
+            if (totalMonths > 24) {
+                html += `
+                    <div style="text-align: center; padding: 15px; color: #666; font-style: italic;">
+                        ... ${totalMonths - 24}개월 더 (총 ${totalMonths}개월)
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            scheduleContent.innerHTML = html;
+            document.getElementById('scheduleModal').style.display = 'block';
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('scheduleModal').style.display = 'none';
+        }
+
+        // 이벤트 리스너 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLoans();
+            updateDashboard();
+            renderLoans();
+
+            // 대출 종류에 따른 상환 방식 자동 조정
+            const loanTypeSelect = document.getElementById('loanType');
+            const paymentTypeSelect = document.getElementById('paymentType');
+            const editLoanTypeSelect = document.getElementById('editLoanType');
+            const editPaymentTypeSelect = document.getElementById('editPaymentType');
+            
+            if (loanTypeSelect && paymentTypeSelect) {
+                loanTypeSelect.addEventListener('change', function() {
+                    if (this.value === '마이너스통장') {
+                        paymentTypeSelect.value = '자유상환';
+                    }
+                });
+            }
+            
+            if (editLoanTypeSelect && editPaymentTypeSelect) {
+                editLoanTypeSelect.addEventListener('change', function() {
+                    if (this.value === '마이너스통장') {
+                        editPaymentTypeSelect.value = '자유상환';
+                    }
+                });
+            }
+        });
+
+        // 모달 외부 클릭 시 닫기
+        window.onclick = function(event) {
+            const editModal = document.getElementById('editModal');
+            const scheduleModal = document.getElementById('scheduleModal');
+            
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+            if (event.target === scheduleModal) {
+                closeScheduleModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -15,8 +15,8 @@
     <meta property="og:title" content="무료 대출 관리 시트 - 간편한 대출 상환 계산기">
     <meta property="og:description" content="여러 대출을 한눈에 관리하고 월 상환금을 자동 계산하는 무료 도구. 원금균등, 원리금균등 방식 지원.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.com">
-    <meta property="og:image" content="https://your-domain.com/loan-manager-preview.jpg">
+    <meta property="og:url" content="https://jiyoung0907.github.io/loan-manager/">
+    <meta property="og:image" content="https://jiyoung0907.github.io/loan-manager/loan-manager-preview.jpg">
     <meta property="og:site_name" content="대출 관리 시트">
     <meta property="og:locale" content="ko_KR">
     
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="무료 대출 관리 시트">
     <meta name="twitter:description" content="여러 대출을 한눈에 관리하고 월 상환금을 자동 계산하는 무료 도구">
-    <meta name="twitter:image" content="https://your-domain.com/loan-manager-preview.jpg">
+    <meta name="twitter:image" content="https://jiyoung0907.github.io/loan-manager/loan-manager-preview.jpg">
     
     <!-- 구조화된 데이터 (JSON-LD) -->
     <script type="application/ld+json">
@@ -33,7 +33,7 @@
         "@type": "WebApplication",
         "name": "대출 관리 시트",
         "description": "무료 대출 관리 및 상환 계산 도구",
-        "url": "https://your-domain.com",
+        "url": "https://jiyoung0907.github.io/loan-manager/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -63,10 +63,10 @@
     
     <!-- 언어 설정 -->
     <meta http-equiv="content-language" content="ko">
-    <link rel="alternate" hreflang="ko" href="https://your-domain.com">
+    <link rel="alternate" hreflang="ko" href="https://jiyoung0907.github.io/loan-manager/">
     
     <!-- 캐노니컬 URL -->
-    <link rel="canonical" href="https://your-domain.com">
+    <link rel="canonical" href="https://jiyoung0907.github.io/loan-manager/">
     
     <style>
         * {
@@ -394,6 +394,166 @@
             background: #f9f9f9;
         }
 
+        .share-button {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            background: #FF4F0F;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 79, 15, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 79, 15, 0.4);
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .share-modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .share-modal h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .share-url-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .share-url-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: #f8f9fa;
+        }
+
+        .copy-url-btn {
+            background: #03A6A1;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-url-btn:hover {
+            background: #028a86;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-share-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .kakao-btn { background: #FEE500; color: #000; }
+        .kakao-btn:hover { background: #F5D800; }
+
+        .facebook-btn { background: #1877F2; }
+        .facebook-btn:hover { background: #166FE5; }
+
+        .twitter-btn { background: #1DA1F2; }
+        .twitter-btn:hover { background: #0D8BD9; }
+
+        .copy-success {
+            color: #28a745;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-success.show {
+            opacity: 1;
+        }
+
+        .visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 0.8rem;
+            color: #666;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 79, 15, 0.2);
+        }
+
+        .visitor-counter h4 {
+            margin: 0 0 8px 0;
+            color: #FF4F0F;
+            font-size: 0.9rem;
+        }
+
+        .visitor-stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .visitor-stat {
+            text-align: center;
+        }
+
+        .visitor-stat .number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .visitor-stat .label {
+            font-size: 0.7rem;
+            color: #999;
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 20px;
@@ -440,6 +600,35 @@
                 width: 100%;
                 justify-content: flex-end;
             }
+            
+            .share-button {
+                bottom: 100px;
+                right: 10px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .share-modal-content {
+                margin: 25% auto;
+                padding: 20px;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .visitor-counter {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px;
+                font-size: 0.7rem;
+            }
+            
+            .visitor-stats {
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -475,6 +664,10 @@
                     ➕ 새 대출 추가
                 </div>
                 <div class="section-content">
+                    <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">
+                        신용대출, 마이너스통장, 담보대출 등 모든 대출을 한 곳에서 관리하세요. 
+                        원금균등, 원리금균등 상환 방식을 지원하며 월 상환금을 자동으로 계산합니다.
+                    </p>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="loanName">대출명</label>
@@ -617,7 +810,67 @@
             </div>
         </div>
         
+        <!-- 공유하기 버튼 -->
+        <button class="share-button" onclick="openShareModal()" title="공유하기">
+            📤
+        </button>
+
+        <!-- 공유 모달 -->
+        <div id="shareModal" class="share-modal">
+            <div class="share-modal-content">
+                <h3>🚀 이 도구를 공유해보세요!</h3>
+                
+                <div class="share-url-container">
+                    <input type="text" class="share-url-input" id="shareUrl" value="https://jiyoung0907.github.io/loan-manager/" readonly>
+                    <button class="copy-url-btn" onclick="copyUrl()">복사</button>
+                </div>
+                
+                <div class="copy-success" id="copySuccess">✅ URL이 복사되었습니다!</div>
+                
+                <div class="share-buttons">
+                    <button class="social-share-btn kakao-btn" onclick="shareKakao()">
+                        💬 카카오톡
+                    </button>
+                    <button class="social-share-btn facebook-btn" onclick="shareFacebook()">
+                        👥 페이스북
+                    </button>
+                    <button class="social-share-btn twitter-btn" onclick="shareTwitter()">
+                        🐦 트위터
+                    </button>
+                </div>
+                
+                <button class="btn" onclick="closeShareModal()" style="background: #666; margin-top: 10px;">
+                    닫기
+                </button>
+            </div>
+        </div>
+
+        <!-- 방문자 카운터 -->
+        <div class="visitor-counter">
+            <h4>👥 방문자 현황</h4>
+            <div class="visitor-stats">
+                <div class="visitor-stat">
+                    <div class="number" id="todayVisitors">0</div>
+                    <div class="label">오늘</div>
+                </div>
+                <div class="visitor-stat">
+                    <div class="number" id="totalVisitors">0</div>
+                    <div class="label">전체</div>
+                </div>
+            </div>
+        </div>
+        
         <div class="footer">
+            <div style="margin-bottom: 10px;">
+                <h3 style="font-size: 1rem; margin-bottom: 5px; color: #333;">무료 대출 관리 도구</h3>
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+                    여러 대출을 통합 관리하고 상환 계획을 세우는 최고의 무료 도구입니다. 
+                    원금균등, 원리금균등 상환 방식을 지원하며 정확한 월 상환금을 계산해드립니다.
+                </p>
+                <div style="font-size: 0.8rem; color: #999;">
+                    #대출관리 #상환계산기 #원금균등 #원리금균등 #무료도구 #대출계산기
+                </div>
+            </div>
             Made by <a href="https://www.linkedin.com/in/jyking0907/" target="_blank">지영킹</a> with Claude
         </div>
     </div>
@@ -972,11 +1225,122 @@
             document.getElementById('scheduleModal').style.display = 'none';
         }
 
+        // 공유 기능
+        function openShareModal() {
+            document.getElementById('shareModal').style.display = 'block';
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function copyUrl() {
+            const urlInput = document.getElementById('shareUrl');
+            urlInput.select();
+            urlInput.setSelectionRange(0, 99999); // 모바일 지원
+            
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                // 최신 브라우저용 Clipboard API
+                navigator.clipboard.writeText(urlInput.value).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    alert('URL 복사에 실패했습니다. 수동으로 복사해주세요.');
+                });
+            }
+        }
+
+        function showCopySuccess() {
+            const successMsg = document.getElementById('copySuccess');
+            successMsg.classList.add('show');
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 2000);
+        }
+
+        function shareKakao() {
+            const url = 'https://jiyoung0907.github.io/loan-manager/';
+            const text = '무료 대출 관리 도구 - 여러 대출을 한눈에 관리하고 상환 계획을 세워보세요!';
+            
+            // 카카오톡 공유 (웹 버전)
+            const kakaoUrl = `https://story.kakao.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(kakaoUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareFacebook() {
+            const url = 'https://jiyoung0907.github.io/loan-manager/';
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            window.open(facebookUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareTwitter() {
+            const url = 'https://jiyoung0907.github.io/loan-manager/';
+            const text = '무료 대출 관리 도구 - 여러 대출을 한눈에 관리하고 상환 계획을 세워보세요! #대출관리 #재테크';
+            const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(twitterUrl, '_blank', 'width=600,height=400');
+        }
+
+        // 방문자 카운터 관리
+        function initVisitorCounter() {
+            const today = new Date().toDateString();
+            const lastVisit = localStorage.getItem('lastVisitDate');
+            const totalVisitors = parseInt(localStorage.getItem('totalVisitors')) || 0;
+            const todayVisitors = parseInt(localStorage.getItem('todayVisitors')) || 0;
+            const lastVisitDate = localStorage.getItem('lastVisitDate');
+
+            // 전체 방문자 수 증가
+            const newTotalVisitors = totalVisitors + 1;
+            localStorage.setItem('totalVisitors', newTotalVisitors);
+
+            // 오늘 방문자 수 처리
+            let newTodayVisitors;
+            if (lastVisitDate === today) {
+                // 오늘 이미 방문한 경우 (새로고침 등)
+                newTodayVisitors = todayVisitors;
+            } else {
+                // 새로운 날짜 또는 첫 방문
+                newTodayVisitors = lastVisitDate ? 1 : todayVisitors + 1;
+                localStorage.setItem('lastVisitDate', today);
+            }
+            
+            localStorage.setItem('todayVisitors', newTodayVisitors);
+
+            // 화면에 표시
+            document.getElementById('todayVisitors').textContent = newTodayVisitors;
+            document.getElementById('totalVisitors').textContent = newTotalVisitors;
+        }
+
+        // 방문자 통계 업데이트 (실시간)
+        function updateVisitorDisplay() {
+            const today = new Date().toDateString();
+            const lastVisitDate = localStorage.getItem('lastVisitDate');
+            const totalVisitors = parseInt(localStorage.getItem('totalVisitors')) || 0;
+            let todayVisitors = parseInt(localStorage.getItem('todayVisitors')) || 0;
+
+            // 날짜가 바뀌면 오늘 방문자 수 초기화
+            if (lastVisitDate !== today) {
+                todayVisitors = 0;
+                localStorage.setItem('todayVisitors', 0);
+                localStorage.setItem('lastVisitDate', today);
+            }
+
+            document.getElementById('todayVisitors').textContent = todayVisitors;
+            document.getElementById('totalVisitors').textContent = totalVisitors;
+        }
+
         // 이벤트 리스너 설정
         document.addEventListener('DOMContentLoaded', function() {
             loadLoans();
             updateDashboard();
             renderLoans();
+            
+            // 방문자 카운터 초기화
+            initVisitorCounter();
+            
+            // 10분마다 방문자 표시 업데이트 (날짜 변경 감지)
+            setInterval(updateVisitorDisplay, 10 * 60 * 1000);
 
             // 대출 종류에 따른 상환 방식 자동 조정
             const loanTypeSelect = document.getElementById('loanType');
@@ -1005,12 +1369,16 @@
         window.onclick = function(event) {
             const editModal = document.getElementById('editModal');
             const scheduleModal = document.getElementById('scheduleModal');
+            const shareModal = document.getElementById('shareModal');
             
             if (event.target === editModal) {
                 closeEditModal();
             }
             if (event.target === scheduleModal) {
                 closeScheduleModal();
+            }
+            if (event.target === shareModal) {
+                closeShareModal();
             }
         }
     </script>
